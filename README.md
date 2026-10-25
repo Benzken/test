@@ -1,4 +1,4 @@
-# 🦊 Mathsapp
+# Mathsapp
 
 Een persoonlijke rekenapp in Duolingo-stijl: tafels, delingen en hoofdrekenen,
 in rondes van twee minuten. Werkt offline en installeer je op je Android-gsm
@@ -18,7 +18,7 @@ als een gewone app.
 
 Daarna start je Mathsapp gewoon vanaf je startscherm, ook zonder internet.
 
-## Wat zit erin (versie 0.2)
+## Wat zit erin (versie 0.3)
 
 - **Leerpad met 7 units:** tafels van 1 tot 12, delen door 2 tot 12, en een
   eindunit met alles door elkaar.

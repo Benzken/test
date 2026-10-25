@@ -78,8 +78,11 @@ p { line-height: 1.45; }
 .icon-btn:active { background: rgba(0, 0, 0, 0.06); }
 
 /* ---------- Mascotte ---------- */
-.mascot { font-size: 1.6rem; display: inline-block; }
-.mascot.huge { font-size: 5.5rem; line-height: 1; }
+.mascot { font-size: 1.8rem; display: inline-block; line-height: 0; }
+.mascot.huge { font-size: 7.5rem; }
+.pi { display: block; overflow: visible; }
+.pi-eyes { transform-box: fill-box; transform-origin: center; animation: blink 4.5s infinite; }
+@keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
 .bounce { animation: bounce 1.6s ease-in-out infinite; }
 @keyframes bounce { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
 
@@ -202,7 +205,7 @@ p { line-height: 1.45; }
   border: 8px solid transparent; border-top-color: var(--card);
 }
 @keyframes float { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -6px); } }
-.node-mascot { position: absolute; top: 50%; left: 50%; font-size: 2.6rem; transform: translate(calc(-50% + var(--side) * 92px), -50%); }
+.node-mascot { position: absolute; top: 50%; left: 50%; font-size: 3.2rem; line-height: 0; transform: translate(calc(-50% + var(--side) * 92px), -50%); }
 .path-end { height: 40px; }
 
 /* ---------- Bottom sheet ---------- */
@@ -294,7 +297,7 @@ p { line-height: 1.45; }
 
 .lesson-body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 10px 20px; gap: 26px; }
 .mascot-row { display: flex; align-items: center; gap: 10px; }
-.mascot-row .mascot { font-size: 2.6rem; }
+.mascot-row .mascot { font-size: 3.4rem; }
 .bubble { position: relative; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 8px 14px; font-weight: 800; }
 .bubble::before { content: ''; position: absolute; left: -9px; top: 50%; transform: translateY(-50%); border: 8px solid transparent; border-right-color: var(--line); border-left: 0; }
 .question {

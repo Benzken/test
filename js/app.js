@@ -3,8 +3,9 @@ import * as store from './store.js';
 import { state } from './store.js';
 import * as E from './engine.js';
 import { sfx, unlockAudio } from './sound.js';
+import { mascot, piSvg } from './mascot.js';
 
-const VERSION = '0.2.0';
+const VERSION = '0.3.0';
 const BLITZ_SECONDS = 60;
 
 const app = document.getElementById('app');
@@ -47,9 +48,9 @@ function render() {
 function welcomeView() {
   return `
   <div class="welcome">
-    <div class="mascot huge bounce">🦊</div>
+    ${mascot('cheer', 'huge bounce')}
     <h1>Hoi Ma 'Nilla!</h1>
-    <p>Ik ben je rekenvos. Welkom bij Mathsapp! Elke dag een paar rondes van twee minuten en je tafels zitten er binnenkort ingebakken.</p>
+    <p>Ik ben Pi, je rekenmaatje. Welkom bij Mathsapp! Elke dag een paar rondes van twee minuten en je tafels zitten er binnenkort ingebakken.</p>
     <p class="muted">Ken je je tafels al een beetje? Doe dan de niveautest, dan sla je over wat je al kent.</p>
     <div class="stack">
       <button class="btn primary c-blue" data-action="welcome-start">Begin bij het begin</button>
@@ -63,7 +64,7 @@ function topbar() {
   const activeToday = state.lastDay === store.today();
   return `
   <header class="topbar">
-    <div class="brand"><span class="mascot">🦊</span><span>Mathsapp</span></div>
+    <div class="brand">${mascot()}<span>Mathsapp</span></div>
     <div class="top-stats">
       <span class="pill streak ${activeToday ? 'on' : ''}" title="Streak">🔥 ${streak}</span>
       <span class="pill xp" title="XP">⚡ ${state.xp}</span>
@@ -141,7 +142,7 @@ function pathView() {
             <button class="node ${status} ${node.review ? 'review' : ''}" style="--p:${pct}" data-action="node" data-id="${node.id}" aria-label="${node.title}">
               <span class="node-face">${status === 'locked' ? '🔒' : node.icon}</span>
             </button>
-            ${status === 'current' ? `<div class="node-mascot" style="--side:${x > 0 ? -1 : 1}">🦊</div>` : ''}
+            ${status === 'current' ? `<div class="node-mascot" style="--side:${x > 0 ? -1 : 1}">${piSvg()}</div>` : ''}
           </div>`;
         }).join('')}
       </div>
@@ -386,11 +387,11 @@ function renderLesson() {
       <header class="lesson-top"><button class="icon-btn" data-action="quit" aria-label="Stoppen">✕</button></header>
       <div class="intro">
         ${L.intro === 'blitz' ? `
-          <div class="mascot huge bounce">⚡</div>
+          ${mascot('cheer', 'huge bounce')}
           <h1>Blitz!</h1>
           <p>${BLITZ_SECONDS} seconden. Zoveel mogelijk juiste antwoorden. Een fout kost je enkel tijd.</p>
           <p class="muted">Je record: <b>${state.blitzBest}</b></p>`
-        : `<div class="mascot huge">🦊</div><p class="intro-lead">Eerst een trucje!</p>${tipCard(L.intro)}`}
+        : `${mascot('happy', 'huge')}<p class="intro-lead">Eerst een trucje!</p>${tipCard(L.intro)}`}
       </div>
       <div class="answer-area"><button class="btn primary c-${color}" data-action="intro-ok">${L.intro === 'blitz' ? 'Start!' : 'Begrepen, start!'}</button></div>
     </div>`;
@@ -425,7 +426,7 @@ function renderLesson() {
       ${top}
     </header>
     <div class="lesson-body">
-      <div class="mascot-row"><span class="mascot">🦊</span><div class="bubble">${label}</div></div>
+      <div class="mascot-row">${mascot()}<div class="bubble">${label}</div></div>
       <div class="question pop">${q.tokens.map(tokenHtml).join('')}</div>
     </div>
     <div class="answer-area">${answer}</div>
@@ -537,6 +538,8 @@ function markChoice(q, value, correct) {
 }
 
 function showFeedback(ok, q, fast) {
+  const pi = app.querySelector('.mascot-row .mascot');
+  if (pi) pi.innerHTML = piSvg(ok ? 'cheer' : 'oops');
   const fb = document.getElementById('feedback');
   if (!fb) return;
   if (ok) {
@@ -686,7 +689,7 @@ function resultView() {
   const goal = state.settings.dailyGoal;
   return `
   <div class="result">
-    <div class="mascot huge ${r.celebrate ? 'bounce' : ''}">🦊</div>
+    ${mascot(r.celebrate || r.mode !== 'jump' ? 'cheer' : 'oops', `huge ${r.celebrate ? 'bounce' : ''}`)}
     <h1>${r.title}</h1>
     <p>${r.sub}</p>
     <div class="tiles">${r.tiles.map(([b, s]) => `<div class="tile"><b>${b}</b><span>${s}</span></div>`).join('')}</div>
