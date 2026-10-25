@@ -1,6 +1,7 @@
 // Alle voortgang wordt lokaal in de browser bewaard (localStorage).
 // Exporteren en importeren als JSON-bestand dient als back-up.
 
+// Oude naam bewust behouden, anders ben je je voortgang kwijt.
 const KEY = 'rekenvos.v1';
 
 function fresh() {
@@ -91,7 +92,7 @@ export function exportBackup() {
   const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `rekenvos-backup-${today()}.json`;
+  a.download = `mathsapp-backup-${today()}.json`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -101,7 +102,7 @@ export function exportBackup() {
 export async function importBackup(file) {
   const data = JSON.parse(await file.text());
   if (!data || typeof data !== 'object' || data.version !== 1 || typeof data.facts !== 'object') {
-    throw new Error('Dit is geen geldige Rekenvos-back-up.');
+    throw new Error('Dit is geen geldige Mathsapp-back-up.');
   }
   state = merge(fresh(), data);
   save();

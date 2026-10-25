@@ -109,7 +109,7 @@ export const TIPS = {
 //   formats: welke vraagvormen mogen voorkomen
 export const UNITS = [
   {
-    id: 'u1', title: 'Makkelijke tafels', subtitle: 'Tafels van 1, 2, 5 en 10', color: 'orange',
+    id: 'u1', title: 'Makkelijke tafels', subtitle: 'Tafels van 1, 2, 5 en 10', color: 'blue',
     nodes: [
       { id: 'u1n1', title: '× 1 en × 10', icon: '1', mul: [1, 10], tip: 't1_10' },
       { id: 'u1n2', title: 'Tafel van 2', icon: '2', mul: [2], tip: 't2' },
@@ -119,7 +119,7 @@ export const UNITS = [
     ],
   },
   {
-    id: 'u2', title: 'Middelste tafels', subtitle: 'Tafels van 3, 4 en 6', color: 'blue',
+    id: 'u2', title: 'Middelste tafels', subtitle: 'Tafels van 3, 4 en 6', color: 'teal',
     nodes: [
       { id: 'u2n1', title: 'Tafel van 3', icon: '3', mul: [3], tip: 't3' },
       { id: 'u2n2', title: 'Tafel van 4', icon: '4', mul: [4], tip: 't4' },
@@ -149,7 +149,7 @@ export const UNITS = [
     ],
   },
   {
-    id: 'u5', title: 'Delen, deel 1', subtitle: 'Delen door 2, 3, 4, 5 en 10', color: 'teal',
+    id: 'u5', title: 'Delen, deel 1', subtitle: 'Delen door 2, 3, 4, 5 en 10', color: 'indigo',
     nodes: [
       { id: 'u5n1', title: 'Delen door 2 en 10', icon: ':', div: [2, 10], tip: 'delen' },
       { id: 'u5n2', title: 'Delen door 5', icon: ':5', div: [5], tip: 'delen5' },

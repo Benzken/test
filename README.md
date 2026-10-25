@@ -1,4 +1,4 @@
-# 🦊 Rekenvos
+# 🦊 Mathsapp
 
 Een persoonlijke rekenapp in Duolingo-stijl: tafels, delingen en hoofdrekenen,
 in rondes van twee minuten. Werkt offline en installeer je op je Android-gsm
@@ -12,13 +12,13 @@ als een gewone app.
    `/ (root)`, en klik op *Save*. Na een minuutje staat de app op
    **https://benzken.github.io/test/**
 2. **Openen in Chrome** op je gsm via die link.
-3. **Installeren:** tik op de knop "Zet Rekenvos op je startscherm" in de app,
+3. **Installeren:** tik op de knop "Zet Mathsapp op je startscherm" in de app,
    of kies in het Chrome-menu (⋮) voor **App installeren** /
    **Toevoegen aan startscherm**.
 
-Daarna start je Rekenvos gewoon vanaf je startscherm, ook zonder internet.
+Daarna start je Mathsapp gewoon vanaf je startscherm, ook zonder internet.
 
-## Wat zit erin (versie 0.1)
+## Wat zit erin (versie 0.2)
 
 - **Leerpad met 7 units:** tafels van 1 tot 12, delen door 2 tot 12, en een
   eindunit met alles door elkaar.

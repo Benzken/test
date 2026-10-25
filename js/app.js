@@ -4,7 +4,7 @@ import { state } from './store.js';
 import * as E from './engine.js';
 import { sfx, unlockAudio } from './sound.js';
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 const BLITZ_SECONDS = 60;
 
 const app = document.getElementById('app');
@@ -49,10 +49,10 @@ function welcomeView() {
   <div class="welcome">
     <div class="mascot huge bounce">🦊</div>
     <h1>Hoi Ma 'Nilla!</h1>
-    <p>Ik ben je rekenvos. Elke dag een paar rondes van twee minuten en je tafels zitten er binnenkort ingebakken.</p>
+    <p>Ik ben je rekenvos. Welkom bij Mathsapp! Elke dag een paar rondes van twee minuten en je tafels zitten er binnenkort ingebakken.</p>
     <p class="muted">Ken je je tafels al een beetje? Doe dan de niveautest, dan sla je over wat je al kent.</p>
     <div class="stack">
-      <button class="btn primary c-orange" data-action="welcome-start">Begin bij het begin</button>
+      <button class="btn primary c-blue" data-action="welcome-start">Begin bij het begin</button>
       <button class="btn ghost" data-action="welcome-test">Doe de niveautest</button>
     </div>
   </div>`;
@@ -63,7 +63,7 @@ function topbar() {
   const activeToday = state.lastDay === store.today();
   return `
   <header class="topbar">
-    <div class="brand"><span class="mascot">🦊</span><span>Rekenvos</span></div>
+    <div class="brand"><span class="mascot">🦊</span><span>Mathsapp</span></div>
     <div class="top-stats">
       <span class="pill streak ${activeToday ? 'on' : ''}" title="Streak">🔥 ${streak}</span>
       <span class="pill xp" title="XP">⚡ ${state.xp}</span>
@@ -84,7 +84,7 @@ function homeView() {
   <div class="home">
     ${topbar()}
     <main class="tab-content">${content}</main>
-    ${ui.tab === 'path' ? `<button class="fab btn primary c-orange" data-action="play">▶ ${E.allDone() ? 'Slim oefenen' : 'Speel verder'}</button>` : ''}
+    ${ui.tab === 'path' ? `<button class="fab btn primary c-blue" data-action="play">▶ ${E.allDone() ? 'Slim oefenen' : 'Speel verder'}</button>` : ''}
     <nav class="tabbar">
       ${tabs.map(([id, icon, label]) => `
         <button class="tab ${ui.tab === id ? 'active' : ''}" data-action="tab" data-tab="${id}">
@@ -112,7 +112,7 @@ function pathView() {
   const installed = window.matchMedia('(display-mode: standalone)').matches;
   let html = '';
   if (deferredInstall && !installed) {
-    html += `<button class="install-banner" data-action="install">📲 Zet Rekenvos op je startscherm</button>`;
+    html += `<button class="install-banner" data-action="install">📲 Zet Mathsapp op je startscherm</button>`;
   }
   html += dailyView();
   let zi = 0;
@@ -163,7 +163,7 @@ function practiceView() {
   return `
   <div class="page">
     <h1>Oefenen</h1>
-    <button class="card c-orange" data-action="practice">
+    <button class="card c-blue" data-action="practice">
       <span class="card-icon">🎯</span>
       <span><b>Slim oefenen</b><small>10 oefeningen uit alles wat je al kent. Je zwakke plekken krijgen voorrang.</small></span>
     </button>
@@ -284,9 +284,9 @@ function tipCard(id) {
 function sheetView() {
   if (!ui.sheet) return '';
   let inner = '';
-  let color = 'orange';
+  let color = 'blue';
   if (ui.sheet.type === 'tip') {
-    inner = `${tipCard(ui.sheet.id)}<button class="btn primary c-orange" data-action="close-sheet">Begrepen</button>`;
+    inner = `${tipCard(ui.sheet.id)}<button class="btn primary c-blue" data-action="close-sheet">Begrepen</button>`;
   } else {
     const node = nodeById(ui.sheet.id);
     color = node.unit.color;
@@ -336,7 +336,7 @@ function settingsView() {
       <input type="file" id="import-file" accept="application/json,.json" hidden>
       <h2>Opnieuw beginnen</h2>
       <button class="btn danger-ghost" data-action="reset">🗑️ Alle voortgang wissen</button>
-      <p class="muted small center">Rekenvos ${VERSION} · gemaakt voor Ma 'Nilla</p>
+      <p class="muted small center">Mathsapp ${VERSION} · gemaakt voor Ma 'Nilla</p>
     </div>
   </div>`;
 }
@@ -379,7 +379,7 @@ function startLesson(opts, { replace = false } = {}) {
 
 function renderLesson() {
   const L = ui.lesson;
-  const color = L.node ? L.node.unit.color : { practice: 'orange', blitz: 'gold', mistakes: 'pink', jump: 'blue' }[L.mode];
+  const color = L.node ? L.node.unit.color : { practice: 'blue', blitz: 'gold', mistakes: 'pink', jump: 'indigo' }[L.mode];
   if (L.intro) {
     app.innerHTML = `
     <div class="lesson c-${color}">
@@ -696,7 +696,7 @@ function resultView() {
       <div class="bar-track"><div class="bar-fill" style="width:${Math.min(100, (done / goal) * 100)}%"></div></div>
     </div>
     <div class="stack result-actions">
-      ${r.actions.map((a, i) => `<button class="btn ${i === 0 ? 'primary c-orange' : 'ghost'}" data-action="${a.action}" ${a.data !== undefined ? `data-unit="${a.data}"` : ''} data-from="result">${a.label}</button>`).join('')}
+      ${r.actions.map((a, i) => `<button class="btn ${i === 0 ? 'primary c-blue' : 'ghost'}" data-action="${a.action}" ${a.data !== undefined ? `data-unit="${a.data}"` : ''} data-from="result">${a.label}</button>`).join('')}
       <button class="btn ghost" data-action="done">Klaar voor nu</button>
     </div>
   </div>`;
@@ -709,7 +709,7 @@ function quitLesson() {
     title: 'Stoppen?',
     text: 'Deze ronde telt dan niet mee. Wat je al juist had, onthoud ik wel.',
     buttons: [
-      { label: 'Verder spelen', cls: 'primary c-orange' },
+      { label: 'Verder spelen', cls: 'primary c-blue' },
       {
         label: 'Stoppen', cls: 'ghost', onClick: () => {
           clearTimers(L);
@@ -868,7 +868,7 @@ const actions = {
       title: 'Alles wissen?',
       text: 'Je XP, streak en alles wat je geleerd hebt, verdwijnt. Dit kan je niet ongedaan maken.',
       buttons: [
-        { label: 'Toch niet', cls: 'primary c-orange' },
+        { label: 'Toch niet', cls: 'primary c-blue' },
         { label: 'Ja, wis alles', cls: 'danger', onClick: () => { store.resetAll(); toast('Alles gewist. Frisse start!'); render(); } },
       ],
     });
@@ -962,7 +962,7 @@ function closeModal() {
 }
 
 function confetti() {
-  const colors = ['#FF8A1F', '#1CB0F6', '#A65CF2', '#FF5C9A', '#14C3B0', '#4CC93A', '#FFC21A'];
+  const colors = ['#2F80ED', '#5A67D8', '#A65CF2', '#FF5C9A', '#14C3B0', '#4CC93A', '#FFC21A'];
   const box = document.createElement('div');
   box.className = 'confetti';
   for (let i = 0; i < 60; i++) {

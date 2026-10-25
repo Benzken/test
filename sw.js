@@ -1,6 +1,6 @@
 // Service worker: bewaart de hele app op de gsm zodat ze offline werkt.
 // Verhoog VERSION bij elke wijziging, dan haalt de app de nieuwe bestanden op.
-const VERSION = 'rekenvos-0.1.0';
+const VERSION = 'mathsapp-0.2.0';
 const FILES = [
   './',
   'index.html',
